@@ -1,0 +1,11 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "icot:block/texture_block_blue",
+        "up": "icot:block/texture_block_blue",
+        "north": "icot:block/texture_block_blue_g",
+        "east": "icot:block/texture_block_blue",
+        "south": "icot:block/texture_block_blue",
+        "west": "icot:block/texture_block_blue"
+    }
+}
