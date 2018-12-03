@@ -1,0 +1,3 @@
+tile.icot:block.toggle_thing.name=Redstone Toggle Thing
+tile.icot:block.redstone_publisher_thing.name=Redstone Publisher Thing
+tile.icot:block.redstone_subscriber_thing.name=Redstone Subscriber Thing
