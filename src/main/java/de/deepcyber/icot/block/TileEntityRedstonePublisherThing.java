@@ -37,10 +37,10 @@ public class TileEntityRedstonePublisherThing extends TileEntity {
             // flank
             if (newRsState==true) {
                 IcoT.logger.info("RISING FLANK");
-                IcoT.sendMqtt("icot.out", "high");
+                //IcoT.sendMqtt("icot.out", "high");
             } else {
                 IcoT.logger.info("FALLING FLANK");
-                IcoT.sendMqtt("icot.out", "low");
+                //IcoT.sendMqtt("icot.out", "low");
             }
             rsState=newRsState;
         }

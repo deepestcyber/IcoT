@@ -34,7 +34,7 @@ public class TileEntityThing extends TileEntity {
             if (newRsState==true) {
                 // upflank
                 IcoT.logger.info("RISING FLANK");
-                IcoT.sendMqtt("icot", "toggle");
+                //IcoT.sendMqtt("icot", "toggle");
             } else {
                 // down flank
             }
