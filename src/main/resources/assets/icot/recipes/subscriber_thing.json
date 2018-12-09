@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " t ",
+    " T ",
+    " r "
+  ],
+  "key": {
+    "T": {
+      "item": "icot:thing"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "t": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "result": {
+    "item": "icot:subscriber_thing",
+    "data": 0
+  }
+}

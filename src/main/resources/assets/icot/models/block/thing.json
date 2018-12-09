@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "icot:block/texture_block_blue"
+    }
+}

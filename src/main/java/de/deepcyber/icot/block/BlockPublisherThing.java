@@ -6,11 +6,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockPublisherThing extends BlockIcoTCommon {
+    public static final String registryName = "publisher_thing";
+
     private static final PropertyBool POWERED = PropertyBool.create("powered");
 
     static private boolean isPowered(IBlockState state) {
@@ -22,7 +25,7 @@ public class BlockPublisherThing extends BlockIcoTCommon {
     }
 
     public BlockPublisherThing() {
-        super("publisher_thing", Material.CIRCUITS);
+        super(registryName, Material.CIRCUITS);
     }
 
 
@@ -39,7 +42,11 @@ public class BlockPublisherThing extends BlockIcoTCommon {
             IcoT.logger.info("Publisher power changed to {}", poweredNow);
             state = state.cycleProperty(POWERED);
             worldIn.setBlockState(pos, state, 3);
-            IcoT.getMqttConnector().publishRedstone("x", poweredNow);
+            TileEntity te = worldIn.getTileEntity(pos);
+            if (te instanceof TileEntityPublisherThing) {
+                TileEntityPublisherThing tep = (TileEntityPublisherThing) te;
+                IcoT.instance.getMqttConnector().publishRedstone(tep.getName(), poweredNow);
+            }
         }
     }
 
@@ -69,6 +76,17 @@ public class BlockPublisherThing extends BlockIcoTCommon {
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, POWERED);
     }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return new TileEntityPublisherThing();
+    }
+
 }
 
 

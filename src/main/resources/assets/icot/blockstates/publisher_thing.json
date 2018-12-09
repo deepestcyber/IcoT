@@ -1,11 +1,11 @@
 {
   "variants": {
-    "powered=true":    [{ "model": "icot:publisher_thing_model"}],
-    "powered=false":    [{ "model": "icot:publisher_thing_model"}],
-    "facing=north": [{ "model": "icot:publisher_thing_model" }],
-    "facing=south": [{ "model": "icot:publisher_thing_model", "y": 180}],
-    "facing=west": [{ "model": "icot:publisher_thing_model", "y": 270}],
-    "facing=east": [{ "model": "icot:publisher_thing_model", "y": 90}],
-    "inventory": [{ "model": "icot:publisher_thing_model"}]
+    "powered=true":    [{ "model": "icot:publisher_thing"}],
+    "powered=false":    [{ "model": "icot:publisher_thing"}],
+    "facing=north": [{ "model": "icot:publisher_thing" }],
+    "facing=south": [{ "model": "icot:publisher_thing", "y": 180}],
+    "facing=west": [{ "model": "icot:publisher_thing", "y": 270}],
+    "facing=east": [{ "model": "icot:publisher_thing", "y": 90}],
+    "inventory": [{ "model": "icot:publisher_thing"}]
   }
 }

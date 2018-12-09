@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "normal": { "model": "icot:thing" },
+    "inventory": { "model": "icot:thing" }
+  }
+}

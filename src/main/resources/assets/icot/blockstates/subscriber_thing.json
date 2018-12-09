@@ -1,11 +1,11 @@
 {
   "variants": {
-    "powered=true":    [{ "model": "icot:subscriber_thing_model"}],
-    "powered=false":    [{ "model": "icot:subscriber_thing_model"}],
-    "facing=north": [{ "model": "icot:subscriber_thing_model" }],
-    "facing=south": [{ "model": "icot:subscriber_thing_model", "y": 180}],
-    "facing=west": [{ "model": "icot:subscriber_thing_model", "y": 270}],
-    "facing=east": [{ "model": "icot:subscriber_thing_model", "y": 90}],
-    "inventory": [{ "model": "icot:subscriber_thing_model"}]
+    "powered=true":    [{ "model": "icot:subscriber_thing"}],
+    "powered=false":    [{ "model": "icot:subscriber_thing"}],
+    "facing=north": [{ "model": "icot:subscriber_thing" }],
+    "facing=south": [{ "model": "icot:subscriber_thing", "y": 180}],
+    "facing=west": [{ "model": "icot:subscriber_thing", "y": 270}],
+    "facing=east": [{ "model": "icot:subscriber_thing", "y": 90}],
+    "inventory": [{ "model": "icot:subscriber_thing"}]
   }
 }

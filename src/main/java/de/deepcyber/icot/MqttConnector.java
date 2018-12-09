@@ -1,5 +1,6 @@
 package de.deepcyber.icot;
 
+import de.deepcyber.icot.block.TileEntitySubscriberThing;
 import org.eclipse.paho.client.mqttv3.*;
 
 import java.util.UUID;
@@ -14,12 +15,29 @@ public class MqttConnector implements MqttCallback {
 
     public MqttConnector() {
         publisherId = UUID.randomUUID().toString();
-        topicPattern = Pattern.compile("IcoT/"+realm+"/([^/]{1,32})/rs");
+        topicPattern = Pattern.compile("IcoT/"+realm+"/([^/]{1,32})/([^/]{1,32})");
     }
 
     @Override
     public void connectionLost(Throwable e) {
         IcoT.logger.error("Connection to mqtt-broker lost", e);
+    }
+
+    private void handleRs(String device, String value) {
+        switch (value) {
+            case "low":
+                IcoT.logger.info("Thing {}<--LOW", device);
+                IcoT.instance.activationMap.put(device, false);
+                IcoT.instance.rsSubscribers.apply(TileEntitySubscriberThing.class, TileEntitySubscriberThing::notifyCheckNeeded, device);
+                break;
+            case "high":
+                IcoT.logger.info("Thing {}<--HIGH", device);
+                IcoT.instance.activationMap.put(device, true);
+                IcoT.instance.rsSubscribers.apply(TileEntitySubscriberThing.class, TileEntitySubscriberThing::notifyCheckNeeded, device);
+                break;
+            default:
+                IcoT.logger.warn("Invalid redstone value received for thing {}: '{}'", device, value);
+        }
     }
 
     @Override
@@ -28,18 +46,11 @@ public class MqttConnector implements MqttCallback {
         Matcher m = topicPattern.matcher(topic);
         if (m.matches()) {
             String device = m.group(1);
+            String channel = m.group(2);
             String stringValue = message.toString();
-            switch (stringValue) {
-                case "low":
-                    IcoT.logger.info("Thing {}<--LOW", device);
-                    IcoT.activationMap.put(device, false);
-                    break;
-                case "high":
-                    IcoT.logger.info("Thing {}<--HIGH", device);
-                    IcoT.activationMap.put(device, true);
-                    break;
-                default:
-                    IcoT.logger.warn("Invalid redstone value received for thing {}: '{}'", device, stringValue);
+            switch (channel) {
+                case "rs":
+                    handleRs(device, stringValue);
             }
         }
     }
